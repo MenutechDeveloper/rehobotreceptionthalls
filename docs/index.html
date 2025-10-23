@@ -15,19 +15,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        :root {
-            --primary: #003366;     
-            --secondary: #FFD700;   
-            --accent: #C0C0C0;       
-            --light: #FDF8E1;       
-            --dark: #001f3f;      
-            --text: #3a3a3a; 
-            --white: #FFFFFF;
-            --gold-light: #FAFAD2;   
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            --magic-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
-        }
+       :root {
+    --primary: #003366;     
+    --secondary: #B87333; 
+    --accent: #C0C0C0;       
+    --light: #FDF8E1;       
+    --dark: #001f3f;      
+    --text: #3a3a3a; 
+    --white: #FFFFFF;
+    --gold-light: #FFE599;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    --magic-shadow: 0 0 20px rgba(184, 115, 51, 0.5);
+}
+
 
         * {
             margin: 0;
@@ -280,7 +281,7 @@
             overflow: hidden; 
         }
         
-        .hero-video { 
+        .hero-bg { 
             position: absolute; 
             top: 0; 
             left: 0; 
@@ -304,12 +305,16 @@
             max-width: 900px; 
             padding: 0 20px; 
             z-index: 1; 
+            width: 100%;
         }
         
         .hero-logo { 
             margin-bottom: 2px; 
             animation: float 6s ease-in-out infinite; 
             margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         
         @keyframes float { 
@@ -319,12 +324,16 @@
         }
         
         .hero-logo-img { 
-            height: 260px;
+            height: auto;
+            max-height: 260px;
+            width: auto;
+            max-width: 90%;
             filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.4)); 
             border: 0px solid var(--secondary);
             border-radius: 15px;
             padding: 10px;
             background-color: rgba(255, 255, 255, 0.3);
+            object-fit: contain;
         }
         
         .hero-title { 
@@ -655,6 +664,7 @@
             height: 350px; 
             box-shadow: var(--shadow); 
             transition: var(--transition); 
+            cursor: pointer;
         }
         
         .gallery-item:hover { 
@@ -698,6 +708,55 @@
         .gallery-overlay p { 
             color: var(--gold-light); 
             font-size: 14px; 
+        }
+
+        /* Modal para imágenes ampliadas */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 3000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.9);
+            animation: fadeIn 0.3s;
+        }
+        
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: var(--secondary);
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 3001;
+            transition: var(--transition);
+        }
+        
+        .close-modal:hover {
+            color: var(--gold-light);
+            transform: scale(1.2);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         /* Contact Section */
@@ -1004,6 +1063,13 @@
                 grid-template-columns: 1fr;
                 gap: 20px;
             }
+            .hero-logo-img {
+                max-height: 200px;
+                max-width: 85%;
+            }
+            .header-logo {
+                height: 100px;
+            }
         }
         
         @media (max-width: 576px) {
@@ -1011,10 +1077,11 @@
                 font-size: 2rem; 
             }
             .hero-logo-img { 
-                height: 210px; 
+                max-height: 180px;
+                max-width: 80%;
             }
             .header-logo { 
-                height: 130px; 
+                height: 90px; 
             }
             section { 
                 padding: 80px 0; 
@@ -1030,6 +1097,47 @@
             }
             .language-selector {
                 margin-left: 10px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .hero-title {
+                font-size: 1.8rem;
+            }
+            .hero-logo-img {
+                max-height: 150px;
+                max-width: 75%;
+            }
+            .header-logo {
+                height: 80px;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* Optimización específica para móviles con pantallas pequeñas */
+        @media (max-height: 700px) and (max-width: 768px) {
+            .hero {
+                height: 100vh;
+                min-height: 600px;
+            }
+            .hero-logo-img {
+                max-height: 160px;
+            }
+            .hero-title {
+                font-size: 1.8rem;
+                margin-bottom: 25px;
+            }
+            .hero-buttons {
+                margin-top: 25px;
+            }
+        }
+
+        /* Optimización para dispositivos con pantallas muy altas */
+        @media (min-height: 1000px) {
+            .hero-logo-img {
+                max-height: 300px;
             }
         }
     </style>
@@ -1088,10 +1196,7 @@
     </header>
 
     <section id="home" class="hero">
-        <video autoplay muted loop playsinline class="hero-video">
-            <source src="./assets/img/event-video.mp4" type="video/mp4">
-            <img src="./assets/img/fallback-image.jpg" alt="Elegant event venue">
-        </video>
+        <img src="./assets/img/fondohero.jpg" alt="Rehobot Reception Hall" class="hero-bg">
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <div class="hero-logo animate-fade-up">
@@ -1327,17 +1432,17 @@
       </div>
 
       <!-- Specialty Desserts -->
-      <div class="gallery-item animate-on-scroll">
-        <img src="./assets/img/salon4.jpg" alt="Specialty Desserts">
+       <div class="gallery-item animate-on-scroll">
+        <img src="./assets/img/salon4.jpg" alt="Luxurious Decor Elements">
         <div class="gallery-overlay">
-          <h3 data-translate="gallery.item16">Gourmet Dessert Displays</h3>
+          <h3 data-translate="gallery.item9">Luxurious Decor Elements</h3>
         </div>
       </div>
 
-      <div class="gallery-item animate-on-scroll">
-        <img src="./assets/img/food.jpg" alt="Exquisite Cuisine">
+       <div class="gallery-item animate-on-scroll">
+        <img src="./assets/img/food.jpg" alt="Custom Fruit Arrangements">
         <div class="gallery-overlay">
-          <h3 data-translate="gallery.item17">Exquisite Cuisine</h3>
+          <h3 data-translate="gallery.item3">Custom Fruit Arrangements</h3>
         </div>
       </div>
 
@@ -1402,6 +1507,16 @@
                             <p data-translate="contact.hours.text">Monday - Saturday: 12PM - 7PM</p>
                         </div>
                     </div>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/rehobotreceptionhallofficial" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/rehobot.receptionhall/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.threads.com/@rehobot.receptionhall" target="_blank" aria-label="Threads">
+                            <img src="assets/img/Threads.png" alt="Threads" style="width:25px; height:14px;">
+                        </a>
+                        <a href="https://www.tiktok.com/@rehobotreceptionhall" target="_blank" aria-label="TikTok">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1438,6 +1553,9 @@
                         <a href="https://www.threads.com/@rehobot.receptionhall" target="_blank" aria-label="Threads">
                             <img src="assets/img/Threads.png" alt="Threads" style="width:25px; height:14px;">
                         </a>
+                        <a href="https://www.tiktok.com/@rehobotreceptionhall" target="_blank" aria-label="TikTok">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -1447,6 +1565,12 @@
             </div>
         </div>
     </footer>
+
+    <!-- Modal para imágenes ampliadas -->
+    <div id="imageModal" class="modal">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
 
     <script>
         const translations = {
@@ -1703,8 +1827,7 @@
                 }
             }
             createSparkles();
-            
-            // funcion de cambio de inioma
+
             const languageButtons = document.querySelectorAll('.language-btn');
             languageButtons.forEach(button => {
                 button.addEventListener('click', function() {
@@ -1722,6 +1845,34 @@
                 activeButton.classList.add('active');
                 changeLanguage(savedLang);
             }
+            
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            const closeModal = document.querySelector('.close-modal');
+            
+            document.querySelectorAll('.gallery-item img').forEach(img => {
+                img.addEventListener('click', function() {
+                    modal.style.display = 'block';
+                    modalImg.src = this.src;
+                    modalImg.alt = this.alt;
+                });
+            });
+            
+            closeModal.addEventListener('click', function() {
+                modal.style.display = 'none';
+            });
+            
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+            
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modal.style.display === 'block') {
+                    modal.style.display = 'none';
+                }
+            });
         });
     </script>
 </body>
