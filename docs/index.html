@@ -297,7 +297,7 @@
             left: 0; 
             width: 100%; 
             height: 100%; 
-            background: linear-gradient(135deg, rgba(0, 31, 63, 0.6) 0%, rgba(0, 51, 102, 0.7) 100%); 
+            background: linear-gradient(135deg, rgba(0, 31, 63, 0.4) 0%, rgba(0, 51, 102, 0.5) 100%);
             z-index: -1; 
         }
         
@@ -1868,6 +1868,7 @@
                 }
             });
             
+            // Cerrar modal con tecla Escape
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape' && modal.style.display === 'block') {
                     modal.style.display = 'none';
