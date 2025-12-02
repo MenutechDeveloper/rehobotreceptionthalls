@@ -996,7 +996,7 @@
             }
         };
 
-        // Lista completa de imágenes para la galería
+
         const galleryImages = [
             { src: "./assets/img/event.jpg", titleKey: "gallery.item1" },
             { src: "./assets/img/event1.jpg", titleKey: "gallery.item2" },
@@ -1055,7 +1055,6 @@
             
             localStorage.setItem('preferred-language', lang);
             
-            // Actualizar textos de la galería cuando cambia el idioma
             updateGalleryTexts();
         }
 
@@ -1091,7 +1090,7 @@
                 galleryItem.appendChild(overlay);
                 galleryGrid.appendChild(galleryItem);
                 
-                // Event listener para abrir imagen en modal
+
                 galleryItem.addEventListener('click', () => {
                     const modal = document.getElementById('imageModal');
                     const modalImg = document.getElementById('modalImage');
@@ -1101,7 +1100,7 @@
                 });
             });
             
-            // Observador para animaciones
+
             const animatedElements = document.querySelectorAll('.animate-on-scroll');
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -1191,8 +1190,7 @@
             const modal = document.getElementById('imageModal');
             const modalImg = document.getElementById('modalImage');
             const closeModal = document.querySelector('.close-modal');
-            
-            // Inicializar galería
+
             initGallery();
             
             closeModal.addEventListener('click', function() {
