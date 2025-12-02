@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found | Rehobot Reception Hall</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #003366;
+            --secondary: #FFD700;
+            --accent: #C0C0C0;
+            --light: #FDF8E1;
+            --dark: #001f3f;
+            --text: #3a3a3a;
+            --white: #FFFFFF;
+            --gold-light: #FAFAD2;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --magic-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            font-family: 'Lora', serif;
+            line-height: 1.7;
+            color: var(--text);
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 51, 102, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(192, 192, 192, 0.1) 0%, transparent 50%),
+                linear-gradient(135deg, #e6f2ff 0%, #f0f8ff 30%, #fffaf0 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23003366" opacity="0.03"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>'),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23FFD700" opacity="0.03"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>');
+            background-size: 120px, 100px;
+            background-position: 10% 20%, 90% 80%;
+            background-repeat: no-repeat;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            color: var(--dark);
+            letter-spacing: 1px;
+        }
+
+        .error-container {
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 60px 40px;
+            border-radius: 20px;
+            box-shadow: 
+                0 15px 35px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            position: relative;
+            z-index: 1;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .error-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.05) 0%, rgba(0, 51, 102, 0.03) 100%);
+            z-index: -1;
+            border-radius: 20px;
+        }
+
+        .error-number {
+            font-size: 8rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--secondary), var(--gold-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            line-height: 1;
+        }
+
+        .error-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .error-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+        }
+
+        .error-message {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .error-icon {
+            font-size: 5rem;
+            margin-bottom: 30px;
+            color: var(--secondary);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 16px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-size: 14px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            font-family: 'Cinzel', serif;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--secondary), var(--gold-light));
+            color: var(--dark);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25), var(--magic-shadow);
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-image: radial-gradient(circle, var(--gold-light) 0%, var(--secondary) 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--secondary);
+            animation: sparkle 3s infinite;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        @keyframes sparkle {
+            0%, 100% {
+                opacity: 0;
+                transform: scale(0) rotate(0deg);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.2) rotate(180deg);
+            }
+        }
+
+        .logo {
+            height: 80px;
+            margin-bottom: 30px;
+            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.15));
+        }
+
+        @media (max-width: 768px) {
+            .error-number {
+                font-size: 6rem;
+            }
+            
+            .error-title {
+                font-size: 2rem;
+            }
+            
+            .error-container {
+                padding: 40px 25px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .error-number {
+                font-size: 4rem;
+            }
+            
+            .error-title {
+                font-size: 1.5rem;
+            }
+            
+            .error-message {
+                font-size: 1rem;
+            }
+            
+            .btn {
+                padding: 14px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="sparkle" style="top: 20%; left: 10%; animation-delay: 0s;"></div>
+    <div class="sparkle" style="top: 80%; left: 15%; animation-delay: 1s;"></div>
+    <div class="sparkle" style="top: 40%; left: 85%; animation-delay: 2s;"></div>
+    <div class="sparkle" style="top: 70%; left: 90%; animation-delay: 1.5s;"></div>
+    
+    <div class="error-container">
+        <img src="./assets/img/logo.png" alt="Rehobot Reception Hall" class="logo">
+        <div class="error-icon">
+            <i class="fas fa-search"></i>
+        </div>
+        <div class="error-number">404</div>
+        <h2 class="error-title">Lost in the Enchanted Forest</h2>
+        <p class="error-message">The page you're looking for seems to have vanished into a magical realm. Perhaps it's attending a royal ball or helping a fairy godmother with her spells.</p>
+        <a href="index.html" class="btn btn-primary">Return to the Castle</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            function createSparkles() {
+                const body = document.querySelector('body');
+                if (!body) return;
+                
+                for (let i = 0; i < 12; i++) {
+                    const sparkle = document.createElement('div');
+                    sparkle.className = 'sparkle';
+                    sparkle.style.top = Math.random() * 100 + '%';
+                    sparkle.style.left = Math.random() * 100 + '%';
+                    sparkle.style.animationDelay = Math.random() * 3 + 's';
+                    body.appendChild(sparkle);
+                }
+            }
+            
+            createSparkles();
+        });
+    </script>
+</body>
+</html>
